@@ -7,10 +7,9 @@ import userIcon from '../Assets/user.svg';
 import emailIcon from '../Assets/email.svg';
 import passwordIcon from '../Assets/password.svg';
 
-export default function Login() {
+export default function Login({ sendLoggedInToApp }) {
 
     const [action, setAction] = useState("Sign Up");
-    const [loggedIn, setLoggedIn] = useState(false);
 
     async function signUpUser() {
         const username = document.getElementById('usernameInput').value;
@@ -26,8 +25,8 @@ export default function Login() {
             .then((response) => {
                 console.log(response);
                 if (response.data.affectedRows) {
-                    setLoggedIn(true);
                     alert(`Successfully created a profile under the username ${username}`);
+                    sendLoggedInToApp(true);
                 } else if (response.data.code) {
                     alert(`Error occured: ${response.data.code}`);
                 } else {
@@ -58,8 +57,8 @@ export default function Login() {
                     const passwordHash = response.data[0].password;
                     const isMatch = await bcrypt.compare(password, passwordHash);
                     if (isMatch) {
-                        setLoggedIn(true);
                         alert(`Successfully logged in! :D`);
+                        sendLoggedInToApp(true);
                     } else {
                         alert(`Wrong password`);
                     }
@@ -71,14 +70,8 @@ export default function Login() {
             })
     }
 
-    async function comparePassword(password, hash) {
-        const isMatch = await bcrypt.compare(password, hash);
-        return isMatch;
-    }
-
     return (
         <div className='container'>
-            {loggedIn?"true":"false"}
             <div className='header'>
                 <div className='text'>{action}</div>
                 <div className='underline'></div>

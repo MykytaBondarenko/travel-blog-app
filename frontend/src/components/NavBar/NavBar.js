@@ -1,24 +1,20 @@
 import './NavBar.css';
+import { Outlet, Link } from 'react-router-dom';
 
-export default function NavBar() {
+const NavBar = ({ loggedIn }) => {
     return (
-        <nav class="navbar">
-            <a href="/travelLogs" id="sitetitle">OnTheRoad</a>
-            <ul>
-                <CustomLink href="/travelLogs">Travels</CustomLink>
-                <CustomLink href="/journeyPlans">Plans</CustomLink>
-                <CustomLink href="/login">Login</CustomLink>
-            </ul>
-        </nav>
+        <>
+            <nav class="navbar">
+                <Link to="/travelLogs" id="sitetitle">OnTheRoad</Link>
+                <ul>
+                    <li><Link to="/travelLogs">Travels</Link></li>
+                    <li><Link to="/journeyPlans">Plans</Link></li>
+                    <li><Link to="/profile">{loggedIn?"Profile":"Login"}</Link></li>
+                </ul>
+            </nav>
+            <Outlet/>
+        </>
     )
 }
 
-function CustomLink({ href, children, ...props }) {
-    const path = window.location.pathname;
-
-    return (
-        <li className={path === href ? "active" : ""}>
-            <a href={href} {...props}>{children}</a>
-        </li>
-    )
-}
+export default NavBar;
