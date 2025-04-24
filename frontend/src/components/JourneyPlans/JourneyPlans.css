@@ -1,0 +1,65 @@
+h1 {
+    text-align: center;
+}
+
+#inputDiv {
+    display:flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#inputDiv button {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    height: 100%;
+    border:none;
+    padding: 5px 10px 5px 10px;
+    transition: 0.1s;
+}
+
+#inputDiv button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#inputDiv button:active {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.findObject {
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 20px;
+}
+
+#objectsUL {
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 40px;
+    font-size: 20px;
+}
+
+.objectBox {
+    list-style: none;
+    background-color: white;
+    border-radius: 10px;
+    width: 22%;
+    padding: 1%;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.objectBox ul {
+    list-style: none;
+    margin-left: -40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.objectBox li {
+    margin-right: 10px;
+}
