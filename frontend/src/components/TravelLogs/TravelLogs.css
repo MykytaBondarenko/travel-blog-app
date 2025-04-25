@@ -63,3 +63,9 @@ h1 {
 .objectBox li {
     margin-right: 10px;
 }
+
+.liTag {
+    background-color: rgba(36, 255, 2, 0.5);
+    padding: 2px;
+    border-radius: 2px;
+}

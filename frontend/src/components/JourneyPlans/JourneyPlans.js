@@ -100,13 +100,13 @@ export default function JourneyPlans() {
         }
         else {
             journeyPlansList = journeyPlansData.map(plan => <li class='objectBox'>{plan.name}
-                                                            <p>User: {users[plan.planID]?users[plan.planID][0].username:"No user"}</p>
-                                                            <ul>{locations[plan.planID]?locations[plan.planID].map(location => <li>{location.Location}</li>):<li>Loading locations...</li>}</ul>
-                                                            <ul>{activities[plan.planID]?activities[plan.planID].map(activity => <li>{activity.Activity}</li>):<li>Loading activities...</li>}</ul>
+                                                            <p>User: {users[plan.planID]?(users[plan.planID][0]?users[plan.planID][0].username:"No user"):"No user"}</p>
+                                                            <p>Description: {plan.description}</p>
+                                                            <ul>{locations[plan.planID]?locations[plan.planID].map(location => <li class="liLocation">{location.Location}</li>):<li>Loading locations...</li>}</ul>
+                                                            <ul>{activities[plan.planID]?activities[plan.planID].map(activity => <li class="liActivity">{activity.Activity}</li>):<li>Loading activities...</li>}</ul>
                                                             <p>Start: {new Date(plan.start_date).toDateString()}</p>
                                                             <p>End: {new Date(plan.end_date).toDateString()}</p>
                                                             <p>Posted: {new Date(plan.post_date).toDateString()}</p>
-                                                            <p>Description: {plan.description}</p>
                                                         </li>)
         }
         return journeyPlansList;

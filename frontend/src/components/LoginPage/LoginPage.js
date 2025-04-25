@@ -6,10 +6,13 @@ import bcrypt from 'bcryptjs';
 import userIcon from '../Assets/user.svg';
 import emailIcon from '../Assets/email.svg';
 import passwordIcon from '../Assets/password.svg';
+import eyeOpenIcon from '../Assets/eye-open.svg';
+import eyeClosedIcon from '../Assets/eye-closed.svg';
 
-export default function Login({ sendLoggedInToApp }) {
+export default function Login({ sendLoggedInToApp, sendCurrentUserToApp }) {
 
-    const [action, setAction] = useState("Sign Up");
+    const [action, setAction] = useState("Login");
+    const [seePwd, setSeePwd] = useState(false);
 
     async function signUpUser() {
         const username = document.getElementById('usernameInput').value;
@@ -26,6 +29,7 @@ export default function Login({ sendLoggedInToApp }) {
                 console.log(response);
                 if (response.data.affectedRows) {
                     alert(`Successfully created a profile under the username ${username}`);
+                    sendCurrentUserToApp(username);
                     sendLoggedInToApp(true);
                 } else if (response.data.code) {
                     alert(`Error occured: ${response.data.code}`);
@@ -58,6 +62,7 @@ export default function Login({ sendLoggedInToApp }) {
                     const isMatch = await bcrypt.compare(password, passwordHash);
                     if (isMatch) {
                         alert(`Successfully logged in! :D`);
+                        sendCurrentUserToApp(username);
                         sendLoggedInToApp(true);
                     } else {
                         alert(`Wrong password`);
@@ -88,7 +93,8 @@ export default function Login({ sendLoggedInToApp }) {
                 
                 <div className='input'>
                     <img src={passwordIcon}></img>
-                    <input type='password' placeholder='Password' id='passwordInput'></input>
+                    <input type={seePwd?'text':'password'} placeholder='Password' id='passwordInput'></input>
+                    <img src={seePwd?eyeClosedIcon:eyeOpenIcon} id="seePassword" onClick={()=>{seePwd?setSeePwd(false):setSeePwd(true)}}></img>
                 </div>
             </div>
             <div className="submit-container">
