@@ -79,9 +79,9 @@ export default function TravelLogs() {
         }
         else {
             travelLogsList = travelLogsData.map(log => <li class='objectBox'>{log.title}
-                                                            <p>User: {users[log.logID]?users[log.logID][0].username:"No user"}</p>
+                                                            <p>User: {users[log.logID]?(users[log.logID][0]?users[log.logID][0].username:"No user"):"No user"}</p>
                                                             <p>{log.description}</p>
-                                                            <ul>{tags[log.logID]?tags[log.logID].map(tag => <li>#{tag.Tag}</li>):<li>Loading tags...</li>}</ul>
+                                                            <ul>{tags[log.logID]?tags[log.logID].map(tag => <li class='liTag'>#{tag.Tag}</li>):<li>Loading tags...</li>}</ul>
                                                             <p>Start: {new Date(log.start_date).toDateString()}</p>
                                                             <p>End: {new Date(log.end_date).toDateString()}</p>
                                                             <p>Posted: {new Date(log.post_date).toDateString()}</p>

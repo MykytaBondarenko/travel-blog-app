@@ -54,6 +54,11 @@
     height: 50px;
 }
 
+.input #seePassword {
+    margin: 0px;
+    cursor: pointer;
+}
+
 .input input{
     height: 50px;
     width: 400px;

@@ -6,8 +6,8 @@ exports.getTravelLogsData = (req, res) => {
 
     let queryContent;
     console.log("tag: ", tag);
-    if (tag == undefined) queryContent = `SELECT * FROM Travel_Log`;
-    else queryContent = `SELECT Travel_Log.* FROM Travel_Log, Tag, Log_has_Tag WHERE Tag.tag = '${tag}' AND Tag.tagID = Log_has_Tag.tagID AND Log_has_Tag.logID = Travel_Log.logID`;
+    if (tag == undefined) queryContent = `SELECT * FROM Travel_Log ORDER BY start_date`;
+    else queryContent = `SELECT Travel_Log.* FROM Travel_Log, Tag, Log_has_Tag WHERE Tag.tag = '${tag}' AND Tag.tagID = Log_has_Tag.tagID AND Log_has_Tag.logID = Travel_Log.logID ORDER BY start_date`;
     console.log(queryContent);
 
     db.query(
@@ -29,7 +29,7 @@ exports.getTravelLogsTags = (req, res) => {
     const logID = data.logID;
 
     let queryContent = `SELECT Tag.Tag FROM Tag, Log_has_Tag WHERE Log_has_Tag.logID = ${logID} AND Log_has_Tag.tagID = Tag.tagID`;
-    console.log(queryContent);
+    //console.log(queryContent);
 
     db.query(
         queryContent,

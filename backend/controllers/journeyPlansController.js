@@ -9,13 +9,13 @@ exports.getJourneyPlansData = (req, res) => {
     console.log("location: ", location);
     console.log("activity: ", activity);
     if (location == undefined && activity == undefined) {
-        queryContent = `SELECT * FROM Journey_Plan`;
+        queryContent = `SELECT * FROM Journey_Plan ORDER BY start_date`;
     } else if (location != undefined && activity != undefined) {
-        queryContent = `SELECT Journey_Plan.* FROM Journey_Plan, Location, Plan_has_Location, Activity, Plan_has_Activity WHERE Location.location = '${location}' AND Location.locationID = Plan_has_Location.locationID AND Plan_has_Location.planID = Journey_Plan.planID AND Activity.activity = '${activity}' AND Activity.activityID = Plan_has_Activity.activityID AND Plan_has_Activity.planID = Journey_Plan.planID`;
+        queryContent = `SELECT Journey_Plan.* FROM Journey_Plan, Location, Plan_has_Location, Activity, Plan_has_Activity WHERE Location.location = '${location}' AND Location.locationID = Plan_has_Location.locationID AND Plan_has_Location.planID = Journey_Plan.planID AND Activity.activity = '${activity}' AND Activity.activityID = Plan_has_Activity.activityID AND Plan_has_Activity.planID = Journey_Plan.planID ORDER BY start_date`;
     } else if (location != undefined) {
-        queryContent = `SELECT Journey_Plan.* FROM Journey_Plan, Location, Plan_has_Location WHERE Location.location = '${location}' AND Location.locationID = Plan_has_Location.locationID AND Plan_has_Location.planID = Journey_Plan.planID`;
+        queryContent = `SELECT Journey_Plan.* FROM Journey_Plan, Location, Plan_has_Location WHERE Location.location = '${location}' AND Location.locationID = Plan_has_Location.locationID AND Plan_has_Location.planID = Journey_Plan.planID ORDER BY start_date`;
     } else {
-        queryContent = `SELECT Journey_Plan.* FROM Journey_Plan, Activity, Plan_has_Activity WHERE Activity.activity = '${activity}' AND Activity.activityID = Plan_has_Activity.activityID AND Plan_has_Activity.planID = Journey_Plan.planID`;
+        queryContent = `SELECT Journey_Plan.* FROM Journey_Plan, Activity, Plan_has_Activity WHERE Activity.activity = '${activity}' AND Activity.activityID = Plan_has_Activity.activityID AND Plan_has_Activity.planID = Journey_Plan.planID ORDER BY start_date`;
     }
     console.log(queryContent);
 

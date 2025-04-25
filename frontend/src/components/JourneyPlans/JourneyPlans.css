@@ -63,3 +63,15 @@ h1 {
 .objectBox li {
     margin-right: 10px;
 }
+
+.liLocation {
+    background-color: rgba(36, 255, 2, 0.5);
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.liActivity {
+    background-color: rgba(2, 255, 238, 0.5);
+    padding: 2px;
+    border-radius: 2px;
+}
